@@ -35,39 +35,35 @@ void setup() {
     pinMode(group[1], OUTPUT);
     pinMode(group[2], INPUT);
   }
+  pinMode(RelaisTrigger, OUTPUT);
 
 }
 
 void checkPair(int output, int input){
-  /*Serial.print("Connection between pins ");
-  Serial.print(output- PIN_TABLE_OFFSET);
-  Serial.print("and ");
-  Serial.print(2);*/
-  
   String message = "";
-  Serial.println(message + "<PINS:" + (output-PIN_TABLE_OFFSET) + " - " + input + ">");
-  
-  digitalWrite(RelaisTrigger, HIGH);
-  delay(100);
-  
+  Serial.println(analogRead(input));
   if(analogRead(input) > 800){
-    Serial.println("<INFO: CONNECTION GOOD!>");
+    Serial.println(message + "<PINS:" + (output-PIN_TABLE_OFFSET) + " - " + input + " CONNECTION GOOD!>");
   }
   else{
-    Serial.println("<INFO: CONNECTION BAD!>");
+    Serial.println(message + "<PINS:" + (output-PIN_TABLE_OFFSET) + " - " + input + " CONNECTION BAD!>");
   }
-
-  digitalWrite(RelaisTrigger, LOW);
 }
 
 void checkGroup(int group[]){
   digitalWrite(group[0],HIGH);
   digitalWrite(group[1],LOW);
   checkPair(group[0], group[2]);
+
+  digitalWrite(RelaisTrigger, HIGH);
+  delay(500);
   
   digitalWrite(group[0],LOW);
   digitalWrite(group[1],HIGH);
   checkPair(group[1], group[2]);
+  
+  digitalWrite(RelaisTrigger, LOW);
+  delay(500);
 }
 
 int repCounter = 1;
@@ -102,11 +98,11 @@ void loop() {
     else if(runTest && repCounter <= repetitions){
       for(int i = 0; i < NUMBER_RELAIS_GROUPS; i++){
         String info = "<INFO:Run";info += repCounter; info += " Group "; info += i+1; info += ">";
+        Serial.println(info);
         int * group = groups[i];
         checkGroup(group);
         String progress = "<PROGRESS:"; progress += (double)((repCounter-1)*NUMBER_RELAIS_GROUPS+i+1)/(double)(repetitions*NUMBER_RELAIS_GROUPS); progress+= ">";
         Serial.println(progress);
-        Serial.println(info);
         delay(1000);
       }
       repCounter++;

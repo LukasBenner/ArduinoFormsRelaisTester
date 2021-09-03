@@ -56,9 +56,8 @@ namespace ArduinoRelaisTesterForms
         {
             if (!isRunning)
             {
+                setApplicationStart();
                 port.WriteLine("<REP:" + repetitionsField.Text + "><START>");
-                start_stop_btn.Text = "Stop";
-                isRunning = true;
             }
             else
             {
@@ -112,7 +111,7 @@ namespace ArduinoRelaisTesterForms
                     {
                         changeButtonText("Start", start_stop_btn);
                         isRunning = false;
-                        setApplicationConnected();
+                        setApplicationFinished();
                     }
                 }
             }
@@ -190,7 +189,24 @@ namespace ArduinoRelaisTesterForms
             isRunning = false;
             port.DiscardInBuffer();
             port.DiscardOutBuffer();
+        }
 
+        private void setApplicationFinished()
+        {
+            start_stop_btn.Text = "Start";
+            isConnected = true;
+            isRunning = false;
+            port.DiscardInBuffer();
+            port.DiscardOutBuffer();
+        }
+
+        private void setApplicationStart()
+        {
+            monitor.Items.Clear();
+            progressBar.Value = 0;
+            start_stop_btn.Text = "Stop";
+            isConnected = true;
+            isRunning = true;
         }
 
         private void initializeUI()
