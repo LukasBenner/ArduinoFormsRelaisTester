@@ -37,9 +37,9 @@ namespace ArduinoRelaisTesterForms
             this.connect_btn = new System.Windows.Forms.Button();
             this.start_stop_btn = new System.Windows.Forms.Button();
             this.relaisTest_ctn = new System.Windows.Forms.GroupBox();
+            this.repetitionsField = new System.Windows.Forms.TextBox();
             this.repetitions_lbl = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.repetitionsField = new System.Windows.Forms.TextBox();
             this.monitor = new System.Windows.Forms.ListBox();
             this.serial_ctn.SuspendLayout();
             this.relaisTest_ctn.SuspendLayout();
@@ -129,6 +129,13 @@ namespace ArduinoRelaisTesterForms
             this.relaisTest_ctn.TabStop = false;
             this.relaisTest_ctn.Text = "Relais Test";
             // 
+            // repetitionsField
+            // 
+            this.repetitionsField.Location = new System.Drawing.Point(265, 37);
+            this.repetitionsField.Name = "repetitionsField";
+            this.repetitionsField.Size = new System.Drawing.Size(49, 27);
+            this.repetitionsField.TabIndex = 8;
+            // 
             // repetitions_lbl
             // 
             this.repetitions_lbl.AutoSize = true;
@@ -145,20 +152,16 @@ namespace ArduinoRelaisTesterForms
             this.progressBar.Size = new System.Drawing.Size(402, 31);
             this.progressBar.TabIndex = 6;
             // 
-            // repetitionsField
-            // 
-            this.repetitionsField.Location = new System.Drawing.Point(265, 37);
-            this.repetitionsField.Name = "repetitionsField";
-            this.repetitionsField.Size = new System.Drawing.Size(49, 27);
-            this.repetitionsField.TabIndex = 8;
-            // 
             // monitor
             // 
+            this.monitor.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.monitor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.monitor.ForeColor = System.Drawing.SystemColors.Window;
             this.monitor.FormattingEnabled = true;
-            this.monitor.ItemHeight = 20;
+            this.monitor.ItemHeight = 18;
             this.monitor.Location = new System.Drawing.Point(14, 13);
             this.monitor.Name = "monitor";
-            this.monitor.Size = new System.Drawing.Size(756, 284);
+            this.monitor.Size = new System.Drawing.Size(756, 274);
             this.monitor.TabIndex = 3;
             // 
             // Ui
